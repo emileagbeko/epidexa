@@ -208,7 +208,7 @@ class FeedbackScreen extends ConsumerWidget {
                       differentialNote: feedback.differentialNote,
                       optionRationales: {
                         for (var opt in clinicalCase.nextStepOptions)
-                          opt.label: opt.rationale
+                          opt.label: opt.rationale ?? ''
                       },
                     ),
                   ),

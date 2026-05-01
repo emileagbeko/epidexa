@@ -58,7 +58,7 @@ class _GlobalChatFabState
           differentialNote: clinicalCase.feedback.differentialNote,
           optionRationales: {
             for (var opt in clinicalCase.nextStepOptions)
-              opt.label: opt.rationale
+              opt.label: opt.rationale ?? ''
           },
         );
       }
