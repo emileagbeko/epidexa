@@ -34,23 +34,24 @@ class ObservationScreen extends ConsumerWidget {
         children: [
           CaseProgressHeader(step: CaseFlowStep.observation, caseTitle: clinicalCase.title),
           const Divider(),
-          GestureDetector(
-            onTap: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (_) => CaseImageFullscreen(
-                    imagePath: clinicalCase.imagePath,
-                    heroTag: 'case_image_$caseId',
+          if (clinicalCase.imagePath != null)
+            GestureDetector(
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (_) => CaseImageFullscreen(
+                      imagePath: clinicalCase.imagePath!,
+                      heroTag: 'case_image_$caseId',
+                    ),
                   ),
-                ),
-              );
-            },
-            child: ClinicalImageViewer(
-              caseId: caseId,
-              imagePath: clinicalCase.imagePath,
-              height: 220,
+                );
+              },
+              child: ClinicalImageViewer(
+                caseId: caseId,
+                imagePath: clinicalCase.imagePath!,
+                height: 220,
+              ),
             ),
-          ),
           Expanded(
             child: SingleChildScrollView(
               padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),

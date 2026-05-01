@@ -69,26 +69,28 @@ class CaseStartScreen extends ConsumerWidget {
                       style: AppTextStyles.body.copyWith(color: AppColors.mutedText),
                     ),
                   ],
-                  const SizedBox(height: 32),
-                  Text('CLINICAL IMAGE', style: AppTextStyles.clinicalNoteLabel),
-                  const SizedBox(height: 12),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (_) => CaseImageFullscreen(
-                            imagePath: clinicalCase.imagePath,
-                            heroTag: 'case_start_image_${clinicalCase.id}',
+                  if (clinicalCase.imagePath != null) ...[
+                    const SizedBox(height: 32),
+                    Text('CLINICAL IMAGE', style: AppTextStyles.clinicalNoteLabel),
+                    const SizedBox(height: 12),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (_) => CaseImageFullscreen(
+                              imagePath: clinicalCase.imagePath!,
+                              heroTag: 'case_start_image_${clinicalCase.id}',
+                            ),
                           ),
-                        ),
-                      );
-                    },
-                    child: ClinicalImageViewer(
-                      caseId: '${clinicalCase.id}_start',
-                      imagePath: clinicalCase.imagePath,
-                      height: 180,
+                        );
+                      },
+                      child: ClinicalImageViewer(
+                        caseId: '${clinicalCase.id}_start',
+                        imagePath: clinicalCase.imagePath!,
+                        height: 180,
+                      ),
                     ),
-                  ),
+                  ],
                   const SizedBox(height: 32),
                   _DifficultyBadge(difficulty: clinicalCase.difficulty),
                 ],

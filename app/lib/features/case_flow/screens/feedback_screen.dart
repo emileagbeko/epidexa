@@ -60,13 +60,14 @@ class FeedbackScreen extends ConsumerWidget {
           Expanded(
             child: CustomScrollView(
               slivers: [
-                SliverToBoxAdapter(
-                  child: ClinicalImageViewer(
-                    caseId: caseId,
-                    imagePath: clinicalCase.imagePath,
-                    height: 200,
+                if (clinicalCase.imagePath != null)
+                  SliverToBoxAdapter(
+                    child: ClinicalImageViewer(
+                      caseId: caseId,
+                      imagePath: clinicalCase.imagePath!,
+                      height: 200,
+                    ),
                   ),
-                ),
                 SliverToBoxAdapter(
                   child: Padding(
                     padding: const EdgeInsets.all(20),
@@ -202,6 +203,13 @@ class FeedbackScreen extends ConsumerWidget {
                       diagnosisCorrect: diagCorrect,
                       nextStepCorrect: stepCorrect,
                       keyVisualCues: feedback.keyVisualCues,
+                      imagePath: clinicalCase.imagePath,
+                      visualDescription: clinicalCase.visualDescription,
+                      differentialNote: feedback.differentialNote,
+                      optionRationales: {
+                        for (var opt in clinicalCase.nextStepOptions)
+                          opt.label: opt.rationale
+                      },
                     ),
                   ),
                 );

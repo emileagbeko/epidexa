@@ -10,29 +10,38 @@ import '../../../shared/widgets/epidexa_scaffold.dart';
 import '../../case_flow/providers/active_case_provider.dart';
 
 class CaseContext {
-  const CaseContext({
-    required this.caseId,
-    required this.title,
-    required this.patientPresentation,
-    this.additionalHistory,
-    required this.correctDiagnosis,
-    required this.userDiagnosis,
-    this.diagnosisCorrect,
-    this.nextStepCorrect,
-    required this.keyVisualCues,
-  });
-
   final String caseId;
   final String title;
-  final String patientPresentation;
+  final String? patientPresentation;
   final String? additionalHistory;
-  final String correctDiagnosis;
+  final String? correctDiagnosis;
   final String? userDiagnosis;
   final bool? diagnosisCorrect;
   final bool? nextStepCorrect;
-  final List<String> keyVisualCues;
+  final List<String>? keyVisualCues;
+  final String? imagePath;
+  final String? visualDescription;
+  final String? differentialNote;
+  final Map<String, String>? optionRationales;
+
+  CaseContext({
+    required this.caseId,
+    required this.title,
+    this.patientPresentation,
+    this.additionalHistory,
+    this.correctDiagnosis,
+    this.userDiagnosis,
+    this.diagnosisCorrect,
+    this.nextStepCorrect,
+    this.keyVisualCues,
+    this.imagePath,
+    this.visualDescription,
+    this.differentialNote,
+    this.optionRationales,
+  });
 
   Map<String, dynamic> toJson() => {
+        'caseId': caseId,
         'title': title,
         'patientPresentation': patientPresentation,
         'additionalHistory': additionalHistory,
@@ -41,6 +50,10 @@ class CaseContext {
         'diagnosisCorrect': diagnosisCorrect,
         'nextStepCorrect': nextStepCorrect,
         'keyVisualCues': keyVisualCues,
+        'imagePath': imagePath,
+        'visualDescription': visualDescription,
+        'differentialNote': differentialNote,
+        'optionRationales': optionRationales,
       };
 }
 

@@ -69,7 +69,8 @@ class ClinicalCase {
     required this.category,
     required this.patientPresentation,
     this.additionalHistory,
-    required this.imagePath,
+    this.imagePath,
+    this.visualDescription,
     required this.observationOptions,
     required this.diagnosisOptions,
     required this.nextStepOptions,
@@ -84,7 +85,8 @@ class ClinicalCase {
   final DermatologyCategory category;
   final String patientPresentation;
   final String? additionalHistory;
-  final String imagePath;
+  final String? imagePath;
+  final String? visualDescription;
   final List<ObservationOption> observationOptions;
   final List<DiagnosisOption> diagnosisOptions;
   final List<NextStepOption> nextStepOptions;

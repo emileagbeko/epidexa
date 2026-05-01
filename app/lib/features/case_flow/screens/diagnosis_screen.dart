@@ -40,7 +40,12 @@ class DiagnosisScreen extends ConsumerWidget {
                 children: [
                   Text('Most likely diagnosis?', style: AppTextStyles.heading),
                   const SizedBox(height: 4),
-                  Text('Based on the clinical image and history', style: AppTextStyles.caption),
+                  Text(
+                    clinicalCase.imagePath != null
+                        ? 'Based on the clinical image and history'
+                        : 'Based on the clinical history provided',
+                    style: AppTextStyles.caption,
+                  ),
                   const SizedBox(height: 20),
                   ...clinicalCase.diagnosisOptions.map((option) {
                     return SingleSelectOptionTile(

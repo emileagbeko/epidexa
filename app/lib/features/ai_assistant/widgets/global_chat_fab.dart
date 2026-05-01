@@ -53,6 +53,13 @@ class _GlobalChatFabState
           diagnosisCorrect: null,
           nextStepCorrect: null,
           keyVisualCues: clinicalCase.feedback.keyVisualCues,
+          imagePath: clinicalCase.imagePath,
+          visualDescription: clinicalCase.visualDescription,
+          differentialNote: clinicalCase.feedback.differentialNote,
+          optionRationales: {
+            for (var opt in clinicalCase.nextStepOptions)
+              opt.label: opt.rationale
+          },
         );
       }
     }

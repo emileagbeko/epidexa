@@ -54,12 +54,22 @@ Deno.serve(async (req: Request) => {
         `Case: ${caseContext.title}\n` +
         `Patient Presentation: ${caseContext.patientPresentation}\n` +
         `Additional History: ${caseContext.additionalHistory ?? "none provided"}\n` +
+        `Has Clinical Image: ${caseContext.imagePath ? "Yes" : "No (Text-only case)"}\n` +
+        `Visual Description: ${caseContext.visualDescription ?? "none provided"}\n` +
         `Correct diagnosis: ${caseContext.correctDiagnosis}\n` +
         `User's current diagnosis choice: ${caseContext.userDiagnosis ?? "none yet"}\n` +
         `Diagnosis result: ${diagStatus}\n` +
         `Next step result: ${nextStepStatus}\n` +
-        `Key visual cues: ${caseContext.keyVisualCues?.join(", ") ?? "none"}\n\n` +
-        `IMPORTANT: Pay close attention to the patient's demographics, occupation, and history provided above when explaining the clinical reasoning. If the results are "not yet submitted", do NOT tell the user they are wrong. Help them explore the visual cues instead.`;
+        `Key visual cues: ${caseContext.keyVisualCues?.join(", ") ?? "none"}\n` +
+        `Differential Diagnosis Note: ${caseContext.differentialNote ?? "none provided"}\n` +
+        `Management Option Rationales: ${JSON.stringify(caseContext.optionRationales ?? {})}\n\n` +
+        `IMPORTANT: Pay close attention to the patient's demographics, occupation, and history provided above when explaining the clinical reasoning. ` +
+        `If the user was incorrect, use the "Differential Diagnosis Note" and "Management Option Rationales" if provided. ` +
+        `If those specific notes are missing, use your general medical expertise to explain WHY their choice was wrong based on the clinical presentation. ` +
+        `Always stay grounded in the provided patient data. ` +
+        `If this is a "Text-only case", do NOT ask the user to look at the image. ` +
+        `If an image and "Visual Description" are provided, use the description to help the user identify key clinical signs. ` +
+        `If the results are "not yet submitted", do NOT tell the user they are wrong. Help them explore the clinical details instead.`;
     }
 
     const response = await fetch(`${NVIDIA_BASE_URL}/chat/completions`, {

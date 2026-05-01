@@ -33,11 +33,11 @@ class CaseCard extends StatelessWidget {
             // Thumbnail
             ClipRRect(
               borderRadius: const BorderRadius.horizontal(left: Radius.circular(18)),
-              child: clinicalCase.imagePath == 'placeholder'
+              child: clinicalCase.imagePath == null || clinicalCase.imagePath == 'placeholder'
                   ? const PlaceholderImage(width: 100, height: 100)
-                  : clinicalCase.imagePath.startsWith('http')
+                  : clinicalCase.imagePath!.startsWith('http')
                       ? Image.network(
-                          clinicalCase.imagePath,
+                          clinicalCase.imagePath!,
                           width: 100,
                           height: 100,
                           fit: BoxFit.cover,
@@ -45,7 +45,7 @@ class CaseCard extends StatelessWidget {
                               const PlaceholderImage(width: 100, height: 100),
                         )
                       : Image.asset(
-                          clinicalCase.imagePath,
+                          clinicalCase.imagePath!,
                           width: 100,
                           height: 100,
                           fit: BoxFit.cover,

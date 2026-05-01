@@ -280,4 +280,74 @@ const List<ClinicalCase> mockCases = [
     ),
     conceptTags: ['atopic-dermatitis', 'pediatrics', 'pigment-change', 'chronic'],
   ),
+  ClinicalCase(
+    id: 'case_005',
+    title: 'Red-brown net-like rash',
+    difficulty: CaseDifficulty.intermediate,
+    category: DermatologyCategory.inflammatory,
+    patientPresentation:
+        'A 52-year-old man presents with a red-brown, net-like rash over his lower back. '
+        'He reports using a heated blanket most evenings for the last several months '
+        'to manage longstanding back pain.',
+    additionalHistory:
+        'Longstanding history of lower back pain. No other systemic symptoms. '
+        'Non-smoker. No known allergies.',
+    imagePath: null, // Text-only case
+    observationOptions: [
+      ObservationOption(id: 'o5_1', label: 'Reticulated appearance', isCorrect: true),
+      ObservationOption(id: 'o5_2', label: 'Red-brown pigmentation', isCorrect: true),
+      ObservationOption(id: 'o5_3', label: 'Well-demarcated border', isCorrect: false),
+      ObservationOption(id: 'o5_4', label: 'Non-tender to palpation', isCorrect: true),
+    ],
+    diagnosisOptions: [
+      DiagnosisOption(id: 'd5_1', label: 'Erythema ab igne', isCorrect: true),
+      DiagnosisOption(id: 'd5_2', label: 'Livedo reticularis', isCorrect: false),
+      DiagnosisOption(id: 'd5_3', label: 'Allergic contact dermatitis', isCorrect: false),
+      DiagnosisOption(id: 'd5_4', label: 'Tinea corporis', isCorrect: false),
+    ],
+    nextStepOptions: [
+      NextStepOption(
+        id: 'n5_1',
+        label: 'Advise stopping further heat exposure',
+        isCorrect: true,
+        rationale:
+            'The primary management for Erythema ab igne is removal of the heat source. '
+            'This often leads to gradual resolution of the rash.',
+      ),
+      NextStepOption(
+        id: 'n5_2',
+        label: 'Arrange patch testing',
+        isCorrect: false,
+        rationale:
+            'Patch testing is used for allergic contact dermatitis, but this '
+            'pattern is classic for chronic heat exposure.',
+      ),
+      NextStepOption(
+        id: 'n5_3',
+        label: 'Prescribe topical antifungal',
+        isCorrect: false,
+        rationale:
+            'There are no features of fungal infection such as central clearing or scaling edges.',
+      ),
+    ],
+    feedback: FeedbackData(
+      correctDiagnosis: 'Erythema ab igne',
+      explanation:
+          'Erythema ab igne is a reticulated, erythematous, and subsequently hyperpigmented '
+          'dermatosis caused by chronic exposure to moderate heat. Common sources include '
+          'laptops, space heaters, and heated blankets. The pattern is characteristic '
+          'and the history of heat exposure is diagnostic. Management involves '
+          'identifying and removing the heat source.',
+      keyVisualCues: [
+        'Reticulated (net-like) pattern',
+        'Red-brown hyperpigmentation',
+        'History of chronic heat exposure',
+      ],
+      differentialNote:
+          'Livedo reticularis also has a net-like pattern but is usually related to '
+          'vascular issues and lacks the specific history of heat exposure.',
+    ),
+    conceptTags: ['heat-exposure', 'pigment-change', 'environmental', 'high-yield'],
+    specialtyNote: 'Chronic lesions should be monitored as they have a rare risk of malignant transformation.',
+  ),
 ];
